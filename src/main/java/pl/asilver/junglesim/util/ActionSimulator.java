@@ -207,10 +207,6 @@ public class ActionSimulator {
     private boolean lifeChecker(Crocodile crocodile) {
         System.out.println("Current statistics: eh - " + crocodile.getEnergyPoints() +
                 ", hp: " + crocodile.getHealthPoints() + ".");
-        if (crocodile.getHealthPoints() <= 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return crocodile.getHealthPoints() > 0;
     }
 }
