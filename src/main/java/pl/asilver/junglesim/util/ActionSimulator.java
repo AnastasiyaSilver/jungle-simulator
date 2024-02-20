@@ -32,13 +32,35 @@ public class ActionSimulator {
         System.out.println("Ups! Crocodile died!:(");
     }
 
+    private void setMinEnergy(Crocodile crocodile) {
+        if (crocodile.getEnergyPoints() < 0) {
+            crocodile.setEnergyPoints(0);
+        }
+    }
+
+    private void setMaxEnergy(Crocodile crocodile) {
+        if (crocodile.getEnergyPoints() > 100) {
+            crocodile.setEnergyPoints(100);
+        }
+    }
+
+    private void setMinHealth(Crocodile crocodile) {
+        if (crocodile.getHealthPoints() < 0) {
+            crocodile.setHealthPoints(0);
+        }
+    }
+
+    private void setMaxHealth(Crocodile crocodile) {
+        if (crocodile.getHealthPoints() > 100) {
+            crocodile.setHealthPoints(100);
+        }
+    }
+
     private void swimAction(Crocodile crocodile) {
         int energy = crocodile.getEnergyPoints();
         energy = energy - 2;
-        if (energy < 0) {
-            energy = 0;
-        }
         crocodile.setEnergyPoints(energy);
+        setMinEnergy(crocodile);
         energyChecker(crocodile);
         System.out.println("Crocodile swam in the river. -2 energy. Current energy: "
                 + crocodile.getEnergyPoints() + ".");
@@ -47,10 +69,8 @@ public class ActionSimulator {
     private void walkAction(Crocodile crocodile) {
         int energy = crocodile.getEnergyPoints();
         energy = energy - 5;
-        if (energy < 0) {
-            energy = 0;
-        }
         crocodile.setEnergyPoints(energy);
+        setMinEnergy(crocodile);
         energyChecker(crocodile);
         System.out.println("Crocodile walked on land. Current energy is: "
                 + crocodile.getEnergyPoints() + ".");
@@ -59,16 +79,12 @@ public class ActionSimulator {
     private void baskAction(Crocodile crocodile) {
         int energy = crocodile.getEnergyPoints();
         energy = energy + 1;
-        if (energy > 100) {
-            energy = 100;
-        }
         crocodile.setEnergyPoints(energy);
+        setMaxEnergy(crocodile);
         int health = crocodile.getHealthPoints();
         health = health + 1;
-        if (health > 100) {
-            health = 100;
-        }
         crocodile.setHealthPoints(health);
+        setMaxEnergy(crocodile);
         energyChecker(crocodile);
         System.out.println("Crocodile basked in the sun! His statistics now: energy points " +
                 crocodile.getEnergyPoints() + ", health points " +
@@ -78,10 +94,8 @@ public class ActionSimulator {
     private void restAction(Crocodile crocodile) {
         int energy = crocodile.getEnergyPoints();
         energy = energy + 2;
-        if (energy > 100) {
-            energy = 100;
-        }
         crocodile.setEnergyPoints(energy);
+        setMaxEnergy(crocodile);
         energyChecker(crocodile);
         System.out.println("Crocodile rested in the water. His energy now: " +
                 crocodile.getEnergyPoints() + ".");
@@ -90,16 +104,12 @@ public class ActionSimulator {
     private void sleepAction(Crocodile crocodile) {
         int energy = crocodile.getEnergyPoints();
         energy = energy + crocodile.getAmplifierCoef() * 7;
-        if (energy > 100) {
-            energy = 100;
-        }
         crocodile.setEnergyPoints(energy);
+        setMaxEnergy(crocodile);
         int health = crocodile.getHealthPoints();
         health = health + crocodile.getAmplifierCoef() * 5;
-        if (health > 100) {
-            health = 100;
-        }
         crocodile.setHealthPoints(health);
+        setMaxHealth(crocodile);
         energyChecker(crocodile);
         System.out.println("Crocodile slept peacefully! Current statistics: energy points " +
                 crocodile.getEnergyPoints() + ", health points " +
@@ -109,16 +119,12 @@ public class ActionSimulator {
     private void eatFishAction(Crocodile crocodile) {
         int energy = crocodile.getEnergyPoints();
         energy = energy - crocodile.getAmplifierCoef() * 1;
-        if (energy < 0) {
-            energy = 0;
-        }
         crocodile.setEnergyPoints(energy);
+        setMinEnergy(crocodile);
         int health = crocodile.getHealthPoints();
         health = health + crocodile.getAmplifierCoef() * 1;
-        if (health > 100) {
-            health = 100;
-        }
         crocodile.setHealthPoints(health);
+        setMaxHealth(crocodile);
         energyChecker(crocodile);
         System.out.println("Crocodile ate a fish! Current statistics: energy "
                 + crocodile.getEnergyPoints() + ", health points: "
@@ -128,16 +134,12 @@ public class ActionSimulator {
     private void eatFrogAction(Crocodile crocodile) {
         int energy = crocodile.getEnergyPoints();
         energy = energy - crocodile.getAmplifierCoef() * 2;
-        if (energy < 0) {
-            energy = 0;
-        }
         crocodile.setEnergyPoints(energy);
+        setMinEnergy(crocodile);
         int health = crocodile.getHealthPoints();
         health = health + crocodile.getAmplifierCoef() * 2;
-        if (health > 100) {
-            health = 100;
-        }
         crocodile.setHealthPoints(health);
+        setMaxEnergy(crocodile);
         energyChecker(crocodile);
         System.out.println("Crocodile ate a frog! Currents statistics: energy points "
                 + crocodile.getEnergyPoints() + ", health points "
@@ -147,16 +149,12 @@ public class ActionSimulator {
     private void eatSnakeAction(Crocodile crocodile) {
         int energy = crocodile.getEnergyPoints();
         energy = energy - crocodile.getAmplifierCoef() * 3;
-        if (energy < 0) {
-            energy = 0;
-        }
         crocodile.setEnergyPoints(energy);
+        setMinEnergy(crocodile);
         int health = crocodile.getHealthPoints();
         health = health + crocodile.getAmplifierCoef() * 5;
-        if (health > 100) {
-            health = 100;
-        }
         crocodile.setHealthPoints(health);
+        setMaxHealth(crocodile);
         energyChecker(crocodile);
         System.out.println("Crocodile ate a snake!Currents statistics: energy points "
                 + crocodile.getEnergyPoints() + ", health points "
@@ -166,10 +164,8 @@ public class ActionSimulator {
     private void swimAwayAction(Crocodile crocodile) {
         int energy = crocodile.getEnergyPoints();
         energy = energy - crocodile.getAmplifierCoef() * 6;
-        if (energy < 0) {
-            energy = 0;
-        }
         crocodile.setEnergyPoints(energy);
+        setMinEnergy(crocodile);
         energyChecker(crocodile);
         System.out.println("Crocodile swam away from hippo! Current energy is: "
                 + crocodile.getEnergyPoints());
@@ -178,16 +174,12 @@ public class ActionSimulator {
     private void fightAction(Crocodile crocodile) {
         int energy = crocodile.getEnergyPoints();
         energy = energy - crocodile.getAmplifierCoef() * 13;
-        if (energy < 0) {
-            energy = 0;
-        }
         crocodile.setEnergyPoints(energy);
+        setMinEnergy(crocodile);
         int health = crocodile.getHealthPoints();
         health = health - crocodile.getAmplifierCoef() * 18;
-        if (health < 0) {
-            health = 0;
-        }
         crocodile.setHealthPoints(health);
+        setMinHealth(crocodile);
         energyChecker(crocodile);
         System.out.println("Crocodile was attacked by hippo! Current statistics after fight: energy points " +
                 crocodile.getEnergyPoints() + ", health points " + crocodile.getHealthPoints() + ".");
@@ -197,15 +189,13 @@ public class ActionSimulator {
         if (crocodile.getEnergyPoints() <= 0) {
             int health = crocodile.getHealthPoints();
             health = health - 10;
-            if (health <= 0) {
-                health = 0;
-            }
             crocodile.setEnergyPoints(health);
+            setMinHealth(crocodile);
         }
     }
 
     private boolean lifeChecker(Crocodile crocodile) {
-        System.out.println("Current statistics: eh - " + crocodile.getEnergyPoints() +
+        System.out.println("Current statistics: ep - " + crocodile.getEnergyPoints() +
                 ", hp: " + crocodile.getHealthPoints() + ".");
         return crocodile.getHealthPoints() > 0;
     }
