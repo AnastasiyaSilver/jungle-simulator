@@ -32,30 +32,6 @@ public class ActionSimulator {
         System.out.println("Ups! Crocodile died!:(");
     }
 
-    private void setMinEnergy(Crocodile crocodile) {
-        if (crocodile.getEnergyPoints() < 0) {
-            crocodile.setEnergyPoints(0);
-        }
-    }
-
-    private void setMaxEnergy(Crocodile crocodile) {
-        if (crocodile.getEnergyPoints() > 100) {
-            crocodile.setEnergyPoints(100);
-        }
-    }
-
-    private void setMinHealth(Crocodile crocodile) {
-        if (crocodile.getHealthPoints() < 0) {
-            crocodile.setHealthPoints(0);
-        }
-    }
-
-    private void setMaxHealth(Crocodile crocodile) {
-        if (crocodile.getHealthPoints() > 100) {
-            crocodile.setHealthPoints(100);
-        }
-    }
-
     private void swimAction(Crocodile crocodile) {
         int energy = crocodile.getEnergyPoints();
         energy = energy - 2;
@@ -183,6 +159,30 @@ public class ActionSimulator {
         energyChecker(crocodile);
         System.out.println("Crocodile was attacked by hippo! Current statistics after fight: energy points " +
                 crocodile.getEnergyPoints() + ", health points " + crocodile.getHealthPoints() + ".");
+    }
+
+    private void setMinEnergy(Crocodile crocodile) {
+        if (crocodile.getEnergyPoints() < 0) {
+            crocodile.setEnergyPoints(0);
+        }
+    }
+
+    private void setMaxEnergy(Crocodile crocodile) {
+        if (crocodile.getEnergyPoints() > 100) {
+            crocodile.setEnergyPoints(100);
+        }
+    }
+
+    private void setMinHealth(Crocodile crocodile) {
+        if (crocodile.getHealthPoints() < 0) {
+            crocodile.setHealthPoints(0);
+        }
+    }
+
+    private void setMaxHealth(Crocodile crocodile) {
+        if (crocodile.getHealthPoints() > 100) {
+            crocodile.setHealthPoints(100);
+        }
     }
 
     private void energyChecker(Crocodile crocodile) {
