@@ -4,7 +4,7 @@ import pl.asilver.junglesim.entity.Crocodile;
 
 public class ActionSimulator {
     public void simulateAction(Crocodile crocodile) throws InterruptedException {
-        while (lifeChecker(crocodile) == true) {
+        while (lifeChecker(crocodile)) {
             int probabilityNumber = (int) (Math.random() * 100);
             if (probabilityNumber >= 0 && probabilityNumber < 10) {
                 swimAction(crocodile);
@@ -15,7 +15,7 @@ public class ActionSimulator {
             } else if (probabilityNumber >= 30 && probabilityNumber < 40) {
                 restAction(crocodile);
             } else if (probabilityNumber >= 40 && probabilityNumber < 50) {
-                slipAction(crocodile);
+                sleepAction(crocodile);
             } else if (probabilityNumber >= 50 && probabilityNumber < 60) {
                 eatFishAction(crocodile);
             } else if (probabilityNumber >= 60 && probabilityNumber < 70) {
@@ -87,7 +87,7 @@ public class ActionSimulator {
                 crocodile.getEnergyPoints() + ".");
     }
 
-    private void slipAction(Crocodile crocodile) {
+    private void sleepAction(Crocodile crocodile) {
         int energy = crocodile.getEnergyPoints();
         energy = energy + crocodile.getAmplifierCoef() * 7;
         if (energy > 100) {
